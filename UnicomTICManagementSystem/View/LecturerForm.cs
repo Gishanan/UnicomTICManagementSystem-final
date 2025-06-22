@@ -17,13 +17,16 @@ namespace UnicomTICManagementSystem.View
 {
     public partial class LecturerForm : Form
     {
-        private readonly LecturerController _lecturerController = new LecturerController();
-        private readonly SubjectController _subjectController = new SubjectController();
+        string _currentUserRole;
+        private readonly LecturerController _lecturerController;
+        private readonly SubjectController _subjectController;
 
         private int _selectedLecturerId = -1;
 
         public LecturerForm()
         {
+            _lecturerController = new LecturerController();
+            _subjectController = new SubjectController();
             InitializeComponent();
 
             
@@ -32,6 +35,40 @@ namespace UnicomTICManagementSystem.View
            
             LoadSubjects();   
             LoadLecturers(); 
+        }
+
+        public LecturerForm(string currentUserRole = "")
+        {
+            _subjectController = new SubjectController();
+            _lecturerController = new LecturerController();
+            
+            _currentUserRole = currentUserRole;
+            InitializeComponent();
+            dataGridView777.CellClick += DataGridViewLecturers_CellClick;
+
+
+            if (currentUserRole.ToLower() == "admin")
+            {
+                Add_Lecturer.Visible = true;
+                Update_Lectuers.Visible = true;
+                Delete_Lacturer.Visible = true;
+            }else if (currentUserRole.ToLower() == "staff")
+            {
+                Add_Lecturer.Visible = false;
+                Update_Lectuers.Visible= false;
+                Delete_Lacturer.Visible= false;
+                Back_Lecturer.Visible = false;
+                Next_Lecturer.Visible = false;
+            }else if (currentUserRole.ToLower() == "lecturer")
+            {
+                Add_Lecturer.Visible = false;
+                Update_Lectuers.Visible = false;
+                Delete_Lacturer.Visible = false;
+                Back_Lecturer.Visible = false;
+                Next_Lecturer.Visible = false;
+            }
+            LoadSubjects();
+            LoadLecturers();
         }
 
         private void LoadLecturers()

@@ -13,7 +13,7 @@ using UnicomTICManagementSystem.Models;
 namespace UnicomTICManagementSystem.View
 {
     public partial class LoginForm : Form
-    {
+    { 
         public LoginForm()
         {
             InitializeComponent();
@@ -21,6 +21,12 @@ namespace UnicomTICManagementSystem.View
 
         private void Login_button_Click(object sender, EventArgs e)
         {
+            Mark mark = new Mark();
+            Student student = new Student();
+            Room room = new Room();
+            Course course = new Course();
+            Subjet subjet = new Subjet();
+            Timetable timetable = new Timetable();
             string username = Name.Text.Trim();
             string password = Paas.Text;
             Paas.UseSystemPasswordChar = true;
@@ -76,13 +82,13 @@ namespace UnicomTICManagementSystem.View
             switch (role.ToLower())
             {
                 case "admin":
-                    dashboard = new MainForm();
+                    dashboard = new MainForm(role);
                     break;
                 case "staff":
-                    dashboard = new StaffMainform();
+                    dashboard = new StaffMainform(role);
                     break;
                 case "lecturer":
-                    dashboard = new LecturerMainForm();
+                    dashboard = new LecturerMainForm(role);
                     break;
                 case "student":
                     dashboard = new StudentMainForm();

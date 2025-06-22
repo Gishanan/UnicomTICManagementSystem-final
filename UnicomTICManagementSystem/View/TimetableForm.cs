@@ -16,14 +16,19 @@ namespace UnicomTICManagementSystem.View
 
     public partial class TimetableForm : Form
     {
-        private readonly LecturerController lecturerController = new LecturerController();
-        private readonly SubjectController subjectController = new SubjectController();
-        private readonly RoomControllers roomController = new RoomControllers();
+        string _currentUserRole;
+        private readonly LecturerController lecturerController;
+        private readonly SubjectController subjectController;
+        private readonly RoomControllers roomController;
         private readonly TimetableControllers timetableController;
         private int _selectedTimetableId = -1;
 
         public TimetableForm()
         {
+            lecturerController = new LecturerController();
+            subjectController = new SubjectController();
+            roomController = new RoomControllers();
+            timetableController = new TimetableControllers();
             InitializeComponent();
             timetableController = new TimetableControllers();
 
@@ -36,6 +41,51 @@ namespace UnicomTICManagementSystem.View
             Delete_Timetable.Click += Delete_Timetable_Click;
 
             this.Load += TimetableForm_Load;
+            LoadLecturers();
+            LoadSubjects();
+            LoadRooms();
+            LoadTimetables(); 
+        }
+
+        public TimetableForm(string currentUserRole = "")
+        {
+            lecturerController = new LecturerController();
+            subjectController = new SubjectController();
+            roomController = new RoomControllers();
+            timetableController = new TimetableControllers();
+            _currentUserRole = currentUserRole;
+            InitializeComponent();
+            dataGridView99.CellClick += DataGridView99_CellClick;
+            Add_Timetable.Click += Add_Timetable_Click;
+            Update_Timetabe.Click += Update_Timetable_Click;
+            Delete_Timetable.Click += Delete_Timetable_Click;
+
+            this.Load += TimetableForm_Load;
+
+            if (currentUserRole.ToLower() == "admin")
+            {
+                Add_Timetable.Visible = true;
+                Update_Timetabe.Visible = true;
+                Delete_Timetable.Visible= true;
+            }else if (currentUserRole.ToLower() == "staff")
+            {
+                Add_Timetable.Visible = false;
+                Update_Timetabe.Visible = false;
+                Delete_Timetable.Visible= false;
+                Back_Time.Visible = false;
+                Next_time.Visible = false;
+            }else if (currentUserRole.ToLower() == "lecturer")
+            {
+                Add_Timetable.Visible = false;
+                Update_Timetabe.Visible = false;
+                Delete_Timetable.Visible= false;
+                Back_Time.Visible = false;
+                Next_time.Visible = false;
+            }
+            LoadLecturers();
+            LoadSubjects();
+            LoadRooms();
+            LoadTimetables();
 
         }
 

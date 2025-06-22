@@ -173,7 +173,7 @@
         private System.Windows.Forms.ComboBox comboBox55;
         private System.Windows.Forms.TextBox Mark;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button Add_Mark;
+        public System.Windows.Forms.Button Add_Mark;
         private System.Windows.Forms.Button Update_Mark;
         private System.Windows.Forms.Button Delete_Mark;
         private System.Windows.Forms.DataGridView dataGridView123;

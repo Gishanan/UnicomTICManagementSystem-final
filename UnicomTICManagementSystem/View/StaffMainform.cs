@@ -12,7 +12,14 @@ namespace UnicomTICManagementSystem.View
 {
     public partial class StaffMainform : Form
     {
-        public StaffMainform()
+        string _currentUserRole;
+        public StaffMainform(string currentUserRole)
+        {
+            InitializeComponent();
+            _currentUserRole = currentUserRole;
+        }
+
+        public StaffMainform( )
         {
             InitializeComponent();
         }
@@ -32,37 +39,37 @@ namespace UnicomTICManagementSystem.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadForm(new StudentForm());
+            LoadForm(new StudentForm(_currentUserRole));
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LoadForm(new CourseForm());
+            LoadForm(new CourseForm(_currentUserRole));
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            LoadForm(new SubjectForm());
+            LoadForm(new SubjectForm(_currentUserRole));
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            LoadForm(new LecturerForm());
+            LoadForm(new LecturerForm(_currentUserRole));
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            LoadForm(new RoomFrom());
+            LoadForm(new RoomFrom(_currentUserRole));
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            LoadForm(new TimetableForm());
+            LoadForm(new TimetableForm(_currentUserRole));
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            LoadForm(new MarkForm());
+            LoadForm(new MarkForm(_currentUserRole));
 
         }
 
@@ -73,10 +80,14 @@ namespace UnicomTICManagementSystem.View
             if (result == DialogResult.Yes)
             {
                 this.Hide();
-
                 LoginForm loginForm = new LoginForm();
                 loginForm.Show();
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+             LoadForm(new ExamForm(_currentUserRole));
         }
     }
 }

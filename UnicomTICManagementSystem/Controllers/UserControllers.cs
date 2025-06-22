@@ -11,7 +11,7 @@ namespace UnicomTICManagementSystem.Controllers
 {
     internal class UserControllers
     {
-        // Add a new user
+        
         public string AddUser(User user, string username)
         {
             try
@@ -37,7 +37,7 @@ namespace UnicomTICManagementSystem.Controllers
             }
         }
 
-        // Retrieve all users
+    
         public List<User> GetAllUsers()
         {
             var users = new List<User>();
@@ -64,7 +64,7 @@ namespace UnicomTICManagementSystem.Controllers
             return users;
         }
 
-        // Update user by ID
+       
         public string UpdateUser(User user, string username)
         {
             try
@@ -93,7 +93,7 @@ namespace UnicomTICManagementSystem.Controllers
             }
         }
 
-        // Delete user by ID
+        //
         public string DeleteUser(int userId)
         {
             try
@@ -115,7 +115,7 @@ namespace UnicomTICManagementSystem.Controllers
             }
         }
 
-        // Get a user by username and password (for login validation)
+        
         public User GetUserByCredentials(string username, string password)
         {
             using (var dbConn = Dbcon.GetConnection())
@@ -142,7 +142,7 @@ namespace UnicomTICManagementSystem.Controllers
                 }
             }
 
-            return null; // user not found
+            return null; 
         }
     }
 }

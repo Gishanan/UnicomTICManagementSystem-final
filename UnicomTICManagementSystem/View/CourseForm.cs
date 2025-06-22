@@ -14,6 +14,7 @@ namespace UnicomTICManagementSystem.View
 {
     public partial class CourseForm : Form
     {
+        string _currentUserRole;
         private readonly CourseController _courseController;
         
          private int _selectedCourseId = -1;
@@ -27,6 +28,42 @@ namespace UnicomTICManagementSystem.View
             dataGridView1.CellClick += dataGridView1_CellContentClick;
 
             LoadCourses();
+        }
+
+
+        public CourseForm(string currentUserRole = "")
+        {
+            _currentUserRole = currentUserRole;
+            InitializeComponent();
+
+            if (currentUserRole.ToLower() == "admin")
+            {
+                Add_Course.Visible = true;
+                Update_Course.Visible = true;
+                Delete_Course.Visible = true;
+            }
+            else if (currentUserRole.ToLower() == "staff")
+            {
+                Add_Course.Visible = false;
+                Update_Course.Visible = false;
+                Delete_Course.Visible = false;
+                Back_Course.Visible = false;
+                Next_Course.Visible = false;
+            }
+            else if (currentUserRole.ToLower() == "lecturer")
+            {
+                Add_Course.Visible = false;
+                Update_Course.Visible = false;
+                Delete_Course.Visible = false;
+                Back_Course.Visible = false;
+                Next_Course.Visible = false;
+            }
+
+            _courseController = new CourseController();
+            dataGridView1.CellClick += dataGridView1_CellContentClick;
+            LoadCourses();
+
+
         }
 
 

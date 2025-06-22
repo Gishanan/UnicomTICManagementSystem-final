@@ -20,25 +20,41 @@ namespace UnicomTICManagementSystem.View
         private readonly MarkControllers _markController = new MarkControllers(); 
 
         private int _selectedMarkId = -1; 
-
-        public MarkForm()
+        string _currentUserRole;
+        public MarkForm( )
         {
+            InitializeComponent();
+            LoadStudents();
+            LoadExams();
+            LoadMarks();
+
+            dataGridView123.CellClick += DataGridViewMarks_CellClick;
+
+        }
+        public MarkForm(string currentUserRole)
+        {
+            _currentUserRole = currentUserRole;
             InitializeComponent();
             LoadStudents();
             LoadExams();
             LoadMarks(); 
 
 
-            User currentUser = new User();  
-            if (currentUser.Role == "Lecturer")
+             
+            if (currentUserRole.ToLower() == "admin")
             {
-                Add_Mark.Visible = false;
-                Update_Mark.Visible = false;
-                Delete_Mark.Visible = false;
+                Add_Mark.Visible = true;
+                Update_Mark.Visible = true;
+                Delete_Mark.Visible = true;
+            }else if(currentUserRole.ToLower() == "staff")
+            {
+                Add_Mark.Visible = true;
+                Update_Mark.Visible = true;
+                Delete_Mark.Visible = true;
             }
 
-          
-            dataGridView123.CellClick += DataGridViewMarks_CellClick;
+
+                dataGridView123.CellClick += DataGridViewMarks_CellClick;
         }
 
   

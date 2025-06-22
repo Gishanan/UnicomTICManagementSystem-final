@@ -9,17 +9,24 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UnicomTICManagementSystem.Models;
 using UnicomTICManagementSystem.View;
 
 namespace UnicomTICManagementSystem.View
 {
     public partial class MainForm : Form
     {
-       
-        public MainForm()
+        string _currentUserRole;
+        public MainForm(string currentUserRole)
         {
+            _currentUserRole = currentUserRole;
             InitializeComponent();
-           
+     
+        }
+
+        public MainForm()
+        {;
+            InitializeComponent();
 
         }
         public void LoadForm(Form form)
@@ -43,7 +50,7 @@ namespace UnicomTICManagementSystem.View
 
         private void Main_Student_Click(object sender, EventArgs e)
         {
-            LoadForm(new StudentForm());
+            LoadForm(new StudentForm(_currentUserRole));
         }
 
         private void Main_Subject_Click(object sender, EventArgs e)
@@ -93,7 +100,7 @@ namespace UnicomTICManagementSystem.View
 
         private void Main_Mark_Click(object sender, EventArgs e)
         {
-            LoadForm(new MarkForm());
+            LoadForm(new MarkForm(_currentUserRole));
         }
 
         private void Main_logout_Click(object sender, EventArgs e)

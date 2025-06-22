@@ -20,14 +20,14 @@ namespace UnicomTICManagementSystem
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Migrations.RegisterMigrations();
+            Migrations.RegisterMigrations();
             Application.Run(new View.LoginForm());
-            Application.Run(new View.UserForm());
-            Application.Run(new View.MainForm());
-            Application.Run(new View.LecturerMainForm());
+            //Application.Run(new View.UserForm());
+            //Application.Run(new View.MainForm());
+           // Application.Run(new View.LecturerMainForm());
             //Application.Run(new View.StaffForm());
             //Application.Run(new View.AdminForm());
-            Application.Run(new View.StudentMainForm());
+            //Application.Run(new View.StudentMainForm());
             //Application.Run(new View.CourseForm());
             //Application.Run(new View.StudentForm());
             //Application.Run(new View.SubjectForm());

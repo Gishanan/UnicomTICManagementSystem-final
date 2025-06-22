@@ -15,22 +15,65 @@ namespace UnicomTICManagementSystem.View
 {
     public partial class ExamForm : Form
     {
-        private readonly SubjectController subjectController = new SubjectController();
-        private readonly ExamControllers examController = new ExamControllers(); // Instance of ExamControllers
-        private int _selectedExamId = -1; // To store the ID of the selected exam for updates/deletes
+        string _currentUserRole;
+        private readonly SubjectController subjectController;
+        private readonly ExamControllers examController;
+        private int _selectedExamId = -1; 
 
         public ExamForm()
         {
+            subjectController = new SubjectController();
+            examController = new ExamControllers();
             InitializeComponent();
 
-            // Wire up event handlers
+           
             this.Load += ExamForm_Load;
             Add_Exam.Click += Add_Exam_Click;
             Update_Exam.Click += Update_Exam_Click;
             Delete_Exam.Click += Delete_Exam_Click;
-            dataGridView109.CellClick += dataGridView109_CellClick; // Assuming your DataGridView for exams is named dataGridView1
+            dataGridView109.CellClick += dataGridView109_CellClick;
+
+            LoadSubjects();
+            LoadExams();
         }
 
+
+         
+        public ExamForm(string currentUserRole = "")
+        {
+            subjectController = new SubjectController();
+            examController = new ExamControllers();
+            _currentUserRole = currentUserRole;
+            InitializeComponent();
+            this.Load += ExamForm_Load;
+            Add_Exam.Click += Add_Exam_Click;
+            Update_Exam.Click += Update_Exam_Click;
+            Delete_Exam.Click += Delete_Exam_Click;
+            dataGridView109.CellClick += dataGridView109_CellClick;
+
+            if (currentUserRole.ToLower() == "admin")
+            {
+                Add_Exam.Visible = true;
+                Update_Exam.Visible=true;
+                Delete_Exam.Visible =true;
+            }else if (currentUserRole.ToLower() == "staff")
+            {
+                Add_Exam.Visible = true;
+                Update_Exam.Visible=true;
+                Delete_Exam.Visible=true;
+                Back_Exam.Visible= !true;
+                Next_Exam.Visible = !true;
+            }else if (currentUserRole.ToLower() == "lecturer")
+            {
+                Add_Exam.Visible =! true;
+                Update_Exam.Visible=!true;
+                Delete_Exam.Visible=!true;
+                Back_Exam.Visible= !true;
+                Next_Exam.Visible= !true;
+            }
+            LoadSubjects();
+            LoadExams();
+        }
         private void ExamForm_Load(object sender, EventArgs e)
         {
             LoadSubjects();
@@ -42,8 +85,8 @@ namespace UnicomTICManagementSystem.View
             try
             {
                 comboBox88.DataSource = subjectController.GetAllSubjects();
-                comboBox88.DisplayMember = "Su_Name"; // Assuming Subject model has Su_Name
-                comboBox88.ValueMember = "Su_Id";     // Assuming Subject model has Su_Id
+                comboBox88.DisplayMember = "Su_Name"; 
+                comboBox88.ValueMember = "Su_Id";     
                 comboBox88.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -56,7 +99,7 @@ namespace UnicomTICManagementSystem.View
         {
             try
             {
-                dataGridView109.DataSource = examController.GetAllExams(); // Assuming dataGridView1 is where exams are displayed
+                dataGridView109.DataSource = examController.GetAllExams(); 
                 dataGridView109.ClearSelection();
                 ClearInputs();
                 _selectedExamId = -1;
@@ -69,11 +112,11 @@ namespace UnicomTICManagementSystem.View
 
         private void ClearInputs()
         {
-            Names.Clear(); // Assuming you have a TextBox for ExamName
+            Names.Clear(); 
             comboBox88.SelectedIndex = -1;
-            dateTimePicker88.Value = DateTime.Now; // Assuming dateTimePicker1 for StartTime
-            dateTimePicker22.Value = DateTime.Now; // Assuming dateTimePicker2 for EndTime
-            dateTimePicker33.Value = DateTime.Now; // Assuming dateTimePicker3 for Date
+            dateTimePicker88.Value = DateTime.Now; 
+            dateTimePicker22.Value = DateTime.Now; 
+            dateTimePicker33.Value = DateTime.Now; 
         }
 
         private bool ValidateInputs()
@@ -99,7 +142,7 @@ namespace UnicomTICManagementSystem.View
 
             var newExam = new Exam
             {
-                ExamName = Names.Text, // Assuming textBox1 is for ExamName
+                ExamName = Names.Text, 
                 SubjectID = (int)comboBox88.SelectedValue,
                 StartTime = dateTimePicker88.Value,
                 EndTime = dateTimePicker22.Value,
@@ -161,7 +204,7 @@ namespace UnicomTICManagementSystem.View
                 _selectedExamId = Convert.ToInt32(row.Cells["ExamID"].Value);
                 Names.Text = row.Cells["ExamName"].Value?.ToString();
 
-                // Find the subject in the ComboBox by its ID
+             
                 if (row.Cells["SubjectID"].Value != DBNull.Value)
                 {
                     comboBox88.SelectedValue = Convert.ToInt32(row.Cells["SubjectID"].Value);
@@ -177,7 +220,7 @@ namespace UnicomTICManagementSystem.View
             }
         }
 
-        // Keep the existing empty methods if they are required by the designer, otherwise you can remove them.
+        
         private void comboBox88_SelectedIndexChanged(object sender, EventArgs e)
         {
         }

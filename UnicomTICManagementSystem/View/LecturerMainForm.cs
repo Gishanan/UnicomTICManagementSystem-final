@@ -13,12 +13,20 @@ namespace UnicomTICManagementSystem.View
 {
     public partial class LecturerMainForm : Form
     {
+        string _currentUserRole;
         public LecturerMainForm()
         {
             InitializeComponent();
             //panel2.Controls.Add(dataGridView1660);      // add to main form
             //panel2.Controls.Remove(dataGridView1660); // remove from panel2
            // dataGridView1660.BringToFront();
+        }
+
+        public LecturerMainForm(string currentUserRole)
+        {
+            _currentUserRole = currentUserRole;
+            InitializeComponent();
+
         }
 
         public void LoadForm(Form form)
@@ -48,23 +56,18 @@ namespace UnicomTICManagementSystem.View
 
         private void Main_Exam_Click(object sender, EventArgs e)
         {
-            
-            ExamControllers examControllers = new ExamControllers();
-            dataGridView1660.DataSource = examControllers.GetAllExams();
+            LoadForm(new ExamForm(_currentUserRole));
         }
 
         private void Main_TimeTable_Click(object sender, EventArgs e)
         {
-            
-            TimetableControllers timetableControllers = new TimetableControllers();
-            dataGridView1660.DataSource = timetableControllers.GetAllTimetables();  
+            LoadForm(new TimetableForm(_currentUserRole));
         }
 
         private void Main_Course_Click(object sender, EventArgs e)
         {
            
-            CourseController courseControllers = new CourseController();
-            dataGridView1660.DataSource = courseControllers.GetAllCourses();
+            LoadForm(new CourseForm(_currentUserRole));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -78,6 +81,16 @@ namespace UnicomTICManagementSystem.View
                 LoginForm loginForm = new LoginForm();
                 loginForm.Show();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadForm(new SubjectForm(_currentUserRole));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LoadForm(new LecturerForm(_currentUserRole));
         }
     }
 }

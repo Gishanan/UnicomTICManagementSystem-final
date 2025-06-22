@@ -123,6 +123,12 @@ namespace UnicomTICManagementSystem.View
                 loginForm.Show();
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TimetableControllers timetableControllers = new TimetableControllers();
+            dataGridView1.DataSource = timetableControllers.GetAllTimetables();
+        }
     }
 
     internal class ConvertToDataTable

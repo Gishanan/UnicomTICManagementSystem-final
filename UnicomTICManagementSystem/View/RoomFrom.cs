@@ -14,6 +14,7 @@ namespace UnicomTICManagementSystem.View
 {
     public partial class RoomFrom : Form
     {
+        string _currentUserRole;
         private readonly RoomControllers _roomController;
         private int _selectedRoomId = -1;
 
@@ -43,7 +44,49 @@ namespace UnicomTICManagementSystem.View
             
             LoadRooms();
         }
+        public RoomFrom(string currentUserRole = "")
+        {
+            _currentUserRole = currentUserRole;
+            InitializeComponent();
+            _roomController = new RoomControllers();
 
+            if (currentUserRole.ToLower() == "admin")
+            {
+                Add_Room.Visible = true;
+                Update_Room.Visible=true;
+                Delete_Room.Visible=true;
+            }else if(currentUserRole.ToLower() =="staff")
+            {
+                Add_Room.Visible = false;
+                Update_Room.Visible=false;
+                Delete_Room.Visible=false; 
+                Back_Room.Visible=false;
+                Next_Room.Visible=false;
+            }else if(currentUserRole.ToLower() == "lecturer")
+            {
+                Add_Room.Visible = false;
+                Update_Room.Visible=false;
+                Delete_Room.Visible=false;
+                Back_Room.Visible=false;
+                Next_Room.Visible=false;
+
+
+            }
+
+            Add_Room.Click += Add_Room_Click;
+            Update_Room.Click += Update_Room_Click;
+            Delete_Room.Click += Delete_Room_Click;
+            RoomdataGridView1.CellClick += DataGridViewRooms_CellClick;
+
+            RoomdataGridView1.AutoGenerateColumns = true;
+            RoomdataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            RoomdataGridView1.MultiSelect = false;
+            RoomdataGridView1.ReadOnly = true;
+            RoomdataGridView1.AllowUserToAddRows = false;
+
+
+            LoadRooms();
+        }
         private void LoadRooms()
         {
             try

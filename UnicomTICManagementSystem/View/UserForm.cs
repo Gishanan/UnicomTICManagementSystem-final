@@ -20,11 +20,13 @@ namespace UnicomTICManagementSystem.View
         {
             InitializeComponent();
 
-          
+
+
+
             comboBox009.Items.AddRange(new object[] { "Admin", "Staff", "Lecturer", "Student" });
             comboBox009.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
+
             CreateUsersTableIfNotExists();
         }
 
@@ -36,7 +38,7 @@ namespace UnicomTICManagementSystem.View
             string role = comboBox009.SelectedIndex == -1 ? null : comboBox009.SelectedItem.ToString();
             string referenceIdText = Ree.Text.Trim();
 
-           
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(confirmPassword) || string.IsNullOrEmpty(role) ||
                 string.IsNullOrEmpty(referenceIdText))
@@ -48,7 +50,7 @@ namespace UnicomTICManagementSystem.View
             if (password != confirmPassword)
             {
                 MessageBox.Show("Passwords do not match.");
-                return; 
+                return;
             }
 
             if (!int.TryParse(referenceIdText, out int referenceId))
@@ -70,8 +72,8 @@ namespace UnicomTICManagementSystem.View
             }
         }
 
-          private void InsertUser(string username, string password, string role, int referenceId)
-          {
+        private void InsertUser(string username, string password, string role, int referenceId)
+        {
             using (var conn = new SQLiteConnection("Data Source=Unicomtic.db"))
             {
                 conn.Open();
@@ -87,15 +89,19 @@ namespace UnicomTICManagementSystem.View
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("User registered successfully.");
 
-                   
-                    ClearForm();
+
+                    this.Hide();
+
+                    LoginForm loginForm = new LoginForm();
+                    loginForm.Show();
+
 
                 }
             }
         }
 
-       
-        
+
+
 
         private bool UsernameExists(string username)
         {
@@ -182,7 +188,7 @@ namespace UnicomTICManagementSystem.View
             Ree.Clear();
         }
 
-        
+
         private void Add_User_Click(object sender, EventArgs e) { }
         private void Update_User_Click(object sender, EventArgs e) { }
         private void Delete_User_Click(object sender, EventArgs e) { }
@@ -195,8 +201,8 @@ namespace UnicomTICManagementSystem.View
             string role = comboBox009.SelectedIndex == -1 ? null : comboBox009.SelectedItem.ToString();
             string referenceIdText = Ree.Text.Trim();
 
-           
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) ||
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || 
                 string.IsNullOrEmpty(confirmPassword) || string.IsNullOrEmpty(role) ||
                 string.IsNullOrEmpty(referenceIdText))
             {
@@ -209,6 +215,12 @@ namespace UnicomTICManagementSystem.View
                 MessageBox.Show("Passwords do not match.");
                 return;
             }
+ 
+            
+
+            
+
+
 
             if (!int.TryParse(referenceIdText, out int referenceId))
             {
@@ -228,9 +240,13 @@ namespace UnicomTICManagementSystem.View
                 return;
             }
 
-            
+
             InsertUser(username, password, role, referenceId);
         }
+      
+
+        }
     }
-}
+
+   
 

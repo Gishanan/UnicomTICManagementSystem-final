@@ -22,7 +22,7 @@ namespace UnicomTICManagementSystem.View
         private readonly StudentContoller _studentController;
         private readonly CourseController _courseController;
         private int _selectedStudentId = -1;
-
+        string _currentUserRole;
         public StudentForm()
         {
             InitializeComponent();
@@ -36,6 +36,31 @@ namespace UnicomTICManagementSystem.View
             Load += StudentForm_Load;
 
             LoadStudents();
+        }
+
+        public  StudentForm(string currentUserRole = "")
+        {
+            _currentUserRole = currentUserRole;
+            InitializeComponent();
+            _studentController = new StudentContoller();
+            _courseController = new CourseController();
+            LoadStudents();
+
+            if (currentUserRole.ToLower() == "admin")
+            {
+                Add_Student.Visible = true;
+                Update_Student.Visible = true;
+                Delete_Student.Visible = true;
+            }else if (currentUserRole.ToLower() == "staff")
+            {
+                Add_Student.Visible = false;
+                Update_Student.Visible = false;
+                Delete_Student.Visible =false;
+                Back_Student.Visible = false;
+                Next_Student.Visible = false;
+            }
+            dataGridView177.CellClick += DataGridViewStudents_CellClick;
+            Load += StudentForm_Load;
         }
 
         private void StudentForm_Load(object sender, EventArgs e)
@@ -184,17 +209,17 @@ namespace UnicomTICManagementSystem.View
             };
 
             StudentContoller controller = new StudentContoller();
-            string message = controller.AddStudent(student);  // or UpdateStudent
+            string message = controller.AddStudent(student);
 
             MessageBox.Show(message);
 
-            // Refresh Main Form table after add
+           
             if (Application.OpenForms["StudentMainForm"] is StudentMainForm mainForm)
             {
                 mainForm.RefreshGrid();
             }
 
-            this.Close();  // Optional: close StudentForm
+            this.Close(); 
         }
 
         private void dataGridView177_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -225,6 +250,11 @@ namespace UnicomTICManagementSystem.View
         private void Back_Student_Click(object sender, EventArgs e)
         {
             LoadForm(new CourseForm());
+        }
+
+        private void phonenumber_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -89,7 +89,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(728, 21);
+            this.label4.Location = new System.Drawing.Point(512, 21);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 19);
@@ -99,7 +99,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(728, 86);
+            this.label5.Location = new System.Drawing.Point(508, 94);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 19);
@@ -109,7 +109,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(731, 153);
+            this.label6.Location = new System.Drawing.Point(512, 151);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 19);
@@ -162,7 +162,7 @@
             // dateTimePicker66
             // 
             this.dateTimePicker66.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker66.Location = new System.Drawing.Point(860, 14);
+            this.dateTimePicker66.Location = new System.Drawing.Point(631, 13);
             this.dateTimePicker66.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker66.Name = "dateTimePicker66";
             this.dateTimePicker66.Size = new System.Drawing.Size(249, 26);
@@ -171,7 +171,7 @@
             // dateTimePicker21
             // 
             this.dateTimePicker21.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker21.Location = new System.Drawing.Point(860, 83);
+            this.dateTimePicker21.Location = new System.Drawing.Point(631, 80);
             this.dateTimePicker21.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker21.Name = "dateTimePicker21";
             this.dateTimePicker21.Size = new System.Drawing.Size(249, 26);
@@ -180,7 +180,7 @@
             // dateTimePicker3
             // 
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(860, 154);
+            this.dateTimePicker3.Location = new System.Drawing.Point(631, 151);
             this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(249, 26);
@@ -201,7 +201,7 @@
             // 
             this.Add_Timetable.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Add_Timetable.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Add_Timetable.Location = new System.Drawing.Point(1000, 254);
+            this.Add_Timetable.Location = new System.Drawing.Point(795, 227);
             this.Add_Timetable.Margin = new System.Windows.Forms.Padding(4);
             this.Add_Timetable.Name = "Add_Timetable";
             this.Add_Timetable.Size = new System.Drawing.Size(94, 27);
@@ -214,7 +214,7 @@
             // 
             this.Update_Timetabe.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Update_Timetabe.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Update_Timetabe.Location = new System.Drawing.Point(899, 254);
+            this.Update_Timetabe.Location = new System.Drawing.Point(652, 227);
             this.Update_Timetabe.Margin = new System.Windows.Forms.Padding(4);
             this.Update_Timetabe.Name = "Update_Timetabe";
             this.Update_Timetabe.Size = new System.Drawing.Size(94, 27);
@@ -227,7 +227,7 @@
             // 
             this.Delete_Timetable.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Delete_Timetable.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Delete_Timetable.Location = new System.Drawing.Point(785, 254);
+            this.Delete_Timetable.Location = new System.Drawing.Point(516, 227);
             this.Delete_Timetable.Margin = new System.Windows.Forms.Padding(4);
             this.Delete_Timetable.Name = "Delete_Timetable";
             this.Delete_Timetable.Size = new System.Drawing.Size(94, 27);
@@ -244,7 +244,7 @@
             this.dataGridView99.Name = "dataGridView99";
             this.dataGridView99.RowHeadersWidth = 51;
             this.dataGridView99.RowTemplate.Height = 24;
-            this.dataGridView99.Size = new System.Drawing.Size(1321, 204);
+            this.dataGridView99.Size = new System.Drawing.Size(1025, 204);
             this.dataGridView99.TabIndex = 17;
             // 
             // Back_Time
@@ -277,7 +277,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1422, 626);
+            this.ClientSize = new System.Drawing.Size(1246, 626);
             this.Controls.Add(this.Next_time);
             this.Controls.Add(this.Back_Time);
             this.Controls.Add(this.dataGridView99);

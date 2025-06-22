@@ -14,6 +14,7 @@ namespace UnicomTICManagementSystem.View
 {
     public partial class SubjectForm : Form
     {
+        string _currentUserRole;
         private readonly SubjectController _subjectController;
         private int _selectedSubjectId = -1;
 
@@ -24,6 +25,38 @@ namespace UnicomTICManagementSystem.View
             dataGridView24.CellClick += DataGridView1_CellClick;
             Load += SubjectForm_Load;
 
+            LoadSubjects();
+        }
+        public SubjectForm(string currentUserRole = "")
+        {
+            _subjectController = new SubjectController();
+            _currentUserRole = currentUserRole;
+            InitializeComponent();
+            dataGridView24.CellClick += DataGridView1_CellClick;
+            Load += SubjectForm_Load;
+
+            if (currentUserRole.ToLower() == "admin")
+            {
+                Add_Subject.Visible = true;
+                Update_subject.Visible = true;
+                Delete_Subject.Visible = true;
+            }else if (currentUserRole.ToLower() =="staff")
+            {
+                Add_Subject.Visible = false;
+                Update_subject.Visible = false;
+                Delete_Subject.Visible = false;
+                Back_Subject.Visible = false;
+                Next_Subject.Visible = false;
+            }else if (currentUserRole.ToLower() == "lecturer")
+            {
+                Add_Subject.Visible = false;
+                Update_subject.Visible = false;
+                Delete_Subject.Visible = false;
+                Back_Subject.Visible = false;
+                Next_Subject.Visible = false;
+
+                
+            }
             LoadSubjects();
         }
 
